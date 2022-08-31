@@ -18,7 +18,7 @@ namespace Escola.Domain.Services
         }
         public void Excluir(AlunoDTO aluno)
         {
-            _alunoRepositorio.Excluir(new Aluno(aluno));
+            throw new NotImplementedException();
         }
 
         public void Inserir(AlunoDTO aluno)
