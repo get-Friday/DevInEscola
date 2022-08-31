@@ -35,7 +35,12 @@ namespace Escola.Domain.Services
 
         public IList<AlunoDTO> ObterTodos()
         {
-            throw new NotImplementedException();
+            IList<AlunoDTO> alunos = _alunoRepositorio
+                .ObterTodos()
+                .Select(a => new AlunoDTO(a))
+                .ToList();
+
+            return alunos;
         }
     }
 }
