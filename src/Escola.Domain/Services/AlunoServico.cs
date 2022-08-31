@@ -34,14 +34,11 @@ namespace Escola.Domain.Services
 
         public IList<AlunoDTO> ObterTodos()
         {
-            IList<AlunoDTO> alunos = _alunoRepositorio
+            return _alunoRepositorio
                 .ObterTodos()
                 .Select(a => new AlunoDTO(a))
                 .ToList();
-
-            return alunos;
         }
-
         public void Alterar(Guid id, AlunoDTO alteracao)
         {
             AlunoDTO aluno = new(_alunoRepositorio.ObterPorId(id));
