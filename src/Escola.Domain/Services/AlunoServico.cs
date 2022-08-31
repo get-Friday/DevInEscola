@@ -18,7 +18,7 @@ namespace Escola.Domain.Services
         }
         public void Excluir(AlunoDTO aluno)
         {
-            throw new NotImplementedException();
+            _alunoRepositorio.Excluir(new Aluno(aluno));
         }
 
         public void Inserir(AlunoDTO aluno)
@@ -30,7 +30,7 @@ namespace Escola.Domain.Services
 
         public AlunoDTO ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return new AlunoDTO(_alunoRepositorio.ObterPorId(id));
         }
 
         public IList<AlunoDTO> ObterTodos()
