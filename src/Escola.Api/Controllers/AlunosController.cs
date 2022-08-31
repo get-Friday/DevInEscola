@@ -20,6 +20,20 @@ namespace Escola.Api.Controllers
             _alunoServico = alunoServico;
         }
 
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(
+            [FromRoute] Guid id
+        )
+        {
+            try
+            {
+                return Ok(_alunoServico.ObterPorId(id));
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
         [HttpGet("ObterTodos")]
         public IActionResult ObterTodos()
         {
@@ -44,6 +58,13 @@ namespace Escola.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
             return Ok();
+        }
+        [HttpDelete("{id}")]
+        public void Deletar(
+            [FromRoute] Guid id
+        )
+        {
+            _alunoServico.Excluir(id);
         }
     }
 }
