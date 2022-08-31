@@ -30,9 +30,9 @@ namespace Escola.Infra.DataBase.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<Aluno> ObterTodos()
+        public IEnumerable<Aluno> ObterTodos()
         {
-            throw new NotImplementedException();
+            return _contexto.Alunos;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Escola.Domain.Interfaces.Repositories
 {
     public interface IAlunoRepositorio
     {
-        IList<Aluno> ObterTodos();
+        IEnumerable<Aluno> ObterTodos();
         Aluno ObterPorId(Guid id);
         void Inserir(Aluno aluno);
         void Excluir (Aluno aluno);
