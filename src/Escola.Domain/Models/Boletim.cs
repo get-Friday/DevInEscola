@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Escola.Domain.Models
 {
-    internal class Boletim
+    public class Boletim
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public Guid AlunoId { get; set; }

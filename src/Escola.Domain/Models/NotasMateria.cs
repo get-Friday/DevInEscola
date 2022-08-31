@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Escola.Domain.Models
 {
-    internal class NotasMateria
+    public class NotasMateria
     {
         public Guid Id { get; set; } = new Guid();
         public Guid BoletimId { get; set; }
