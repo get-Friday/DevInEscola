@@ -41,5 +41,18 @@ namespace Escola.Domain.Services
 
             return alunos;
         }
+
+        public void Alterar(Guid id, AlunoDTO alteracao)
+        {
+            AlunoDTO aluno = new(_alunoRepositorio.ObterPorId(id));
+
+            aluno.Nome = alteracao.Nome;
+            aluno.Sobrenome = alteracao.Sobrenome;
+            aluno.DataNascimento = alteracao.DataNascimento;
+            aluno.Matricula = alteracao.Matricula;
+            aluno.Email = alteracao.Email;
+
+            _alunoRepositorio.Alterar();
+        }
     }
 }
