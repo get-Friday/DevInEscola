@@ -57,7 +57,7 @@ namespace Escola.Api.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-            return Ok();
+            return Created("api/aluno", aluno);
         }
         [HttpDelete("{id}")]
         public void Deletar(
@@ -66,5 +66,22 @@ namespace Escola.Api.Controllers
         {
             _alunoServico.Excluir(id);
         }
+        [HttpPut("{id}")]
+        public IActionResult Alterar(
+            [FromRoute] Guid id,
+            [FromBody] AlunoDTO aluno
+        )
+        {
+            try
+            {
+                _alunoServico.Alterar(id, aluno);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            return Created("api/aluno", aluno);
+        }
+
     }
 }
