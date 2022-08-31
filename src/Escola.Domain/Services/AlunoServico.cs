@@ -16,15 +16,14 @@ namespace Escola.Domain.Services
         {
             _alunoRepositorio = alunoRepositorio;
         }
-        public void Excluir(AlunoDTO aluno)
+        public void Excluir(Guid id)
         {
-            _alunoRepositorio.Excluir(new Aluno(aluno));
+            Aluno aluno = _alunoRepositorio.ObterPorId(id);
+            _alunoRepositorio.Excluir(aluno);
         }
 
         public void Inserir(AlunoDTO aluno)
         {
-            //ToDo: Validar se já consta matricula.
-
             _alunoRepositorio.Inserir(new Aluno(aluno));
         }
 
