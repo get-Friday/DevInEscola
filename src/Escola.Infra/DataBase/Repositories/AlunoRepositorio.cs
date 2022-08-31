@@ -16,7 +16,8 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Excluir(Aluno aluno)
         {
-            throw new NotImplementedException();
+            _contexto.Alunos.Remove(aluno);
+            _contexto.SaveChanges();
         }
 
         public void Inserir(Aluno aluno)
@@ -27,7 +28,7 @@ namespace Escola.Infra.DataBase.Repositories
 
         public Aluno ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return _contexto.Alunos.Find(id);
         }
 
         public IEnumerable<Aluno> ObterTodos()
