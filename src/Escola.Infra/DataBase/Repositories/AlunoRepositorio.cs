@@ -36,7 +36,7 @@ namespace Escola.Infra.DataBase.Repositories
             return _contexto.Alunos;
         }
 
-        public void Alterar(Aluno aluno)
+        public void Alterar()
         {
             _contexto.SaveChanges();
         }
