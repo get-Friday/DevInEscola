@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Escola.Domain.DTO;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Models;
 
 namespace Escola.Api.Controllers
 {
@@ -18,16 +19,28 @@ namespace Escola.Api.Controllers
         {
             _alunoServico = alunoServico;
         }
-        // [HttpGet("ObterTodos")]
-        // public IActionResult ObterTodos(){
-            
-        // }
+
+        [HttpGet("ObterTodos")]
+        public IActionResult ObterTodos()
+        {
+            try
+            {
+                return Ok(_alunoServico.ObterTodos());
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
         [HttpPost]
-        public IActionResult Inserir (AlunoDTO aluno){
-            try{
+        public IActionResult Inserir (AlunoDTO aluno)
+        {
+            try
+            {
                 _alunoServico.Inserir(aluno);
             }
-            catch{
+            catch
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
             return Ok();
