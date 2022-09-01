@@ -18,6 +18,9 @@ namespace Escola.Infra.DataBase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             modelBuilder.ApplyConfiguration(new AlunoMap());
+            modelBuilder.ApplyConfiguration(new BoletimMap());
+            modelBuilder.ApplyConfiguration(new NotasMateriaMap());
+            modelBuilder.ApplyConfiguration(new MateriaMap());
         }
     }
 }
