@@ -22,10 +22,6 @@ namespace Escola.Infra.DataBase.Mappings
                 .HasColumnName("ID")
                 .HasColumnType("uniqueidentifier");
 
-            builder.Property(b => b.AlunoId)
-                .HasColumnName("AlunoID")
-                .HasColumnType("uniqueidentifier");
-
             builder.HasOne<Aluno>(b => b.Aluno)
                 .WithMany(a => a.Boletins)
                 .HasForeignKey(b => b.AlunoId);
