@@ -10,5 +10,7 @@ namespace Escola.Domain.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public Guid AlunoId { get; set; }
+
+        public Aluno Aluno { get; set; }
     }
 }
