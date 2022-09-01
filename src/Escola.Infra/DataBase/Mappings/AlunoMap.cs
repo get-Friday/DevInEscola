@@ -43,7 +43,7 @@ namespace Escola.Infra.DataBase.Mappings
             
 
             builder.Property(x => x.Matricula)
-                    .HasColumnName("Matricula")
+                    .HasColumnName("MATRICULA")
                     .HasColumnType("int"); 
 
             builder.HasIndex(x => x.Matricula).IsUnique();
