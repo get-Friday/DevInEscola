@@ -42,13 +42,11 @@ namespace Escola.Infra.DataBase.Mappings
                     .HasColumnType("DATE");
             
 
-             builder.Property(x => x.Matricula)
+            builder.Property(x => x.Matricula)
                     .HasColumnName("Matricula")
                     .HasColumnType("int"); 
 
-             builder.HasIndex(x => x.Matricula).IsUnique();
-
-            
+            builder.HasIndex(x => x.Matricula).IsUnique();
         }
     }
 }
