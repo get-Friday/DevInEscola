@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Escola.Domain.DTO;
 using Escola.Domain.Interfaces.Services;
-using Escola.Domain.Models;
+using Escola.Domain.Exceptions;
 
 namespace Escola.Api.Controllers
 {
@@ -34,7 +34,7 @@ namespace Escola.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-        [HttpGet("ObterTodos")]
+        [HttpGet]
         public IActionResult ObterTodos()
         {
             try
@@ -53,18 +53,24 @@ namespace Escola.Api.Controllers
             {
                 _alunoServico.Inserir(aluno);
             }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+            catch (DuplicadoException ex){
+                return StatusCode(StatusCodes.Status406NotAcceptable, new ErrorDTO( ex.Message));
             }
-            return Created("api/aluno", aluno);
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorDTO("Ocorreu um erro favor contactar a TI"));
+            }
+            return StatusCode(StatusCodes.Status201Created);
         }
         [HttpDelete("{id}")]
-        public void Deletar(
-            [FromRoute] Guid id
-        )
-        {
-            _alunoServico.Excluir(id);
+        public IActionResult Deletar(Guid id){
+            try{
+                _alunoServico.Excluir(id);
+                return StatusCode(StatusCodes.Status204NoContent);
+            }
+            catch{
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
         [HttpPut("{id}")]
         public IActionResult Alterar(
@@ -74,14 +80,14 @@ namespace Escola.Api.Controllers
         {
             try
             {
-                _alunoServico.Alterar(id, aluno);
+                aluno.Id = id;
+                _alunoServico.Alterar(aluno);
+                return Ok();
             }
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-            return Created("api/aluno", aluno);
         }
-
     }
 }

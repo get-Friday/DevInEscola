@@ -6,6 +6,7 @@ using Escola.Domain.DTO;
 using Escola.Domain.Models;
 using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Exceptions;
 
 namespace Escola.Domain.Services
 {
@@ -24,6 +25,9 @@ namespace Escola.Domain.Services
 
         public void Inserir(AlunoDTO aluno)
         {
+            if(_alunoRepositorio.ExisteMatricula(aluno.Matricula))
+                throw new DuplicadoException("Matricula já existente");
+
             _alunoRepositorio.Inserir(new Aluno(aluno));
         }
 
@@ -39,17 +43,11 @@ namespace Escola.Domain.Services
                 .Select(a => new AlunoDTO(a))
                 .ToList();
         }
-        public void Alterar(Guid id, AlunoDTO alteracao)
+        public void Alterar(AlunoDTO aluno)
         {
-            AlunoDTO aluno = new(_alunoRepositorio.ObterPorId(id));
-
-            aluno.Nome = alteracao.Nome;
-            aluno.Sobrenome = alteracao.Sobrenome;
-            aluno.DataNascimento = alteracao.DataNascimento;
-            aluno.Matricula = alteracao.Matricula;
-            aluno.Email = alteracao.Email;
-
-            _alunoRepositorio.Alterar();
+            Aluno alunoDb = _alunoRepositorio.ObterPorId(aluno.Id);
+            alunoDb.Update(aluno);
+            _alunoRepositorio.Alterar(alunoDb);
         }
     }
 }
