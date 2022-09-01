@@ -14,5 +14,6 @@ namespace Escola.Domain.Models
         public int Nota { get; set; }
 
         public Boletim Boletim { get; set; }
+        public Materia Materia { get; set; }
     }
 }
