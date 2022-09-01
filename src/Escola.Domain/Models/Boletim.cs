@@ -12,5 +12,6 @@ namespace Escola.Domain.Models
         public Guid AlunoId { get; set; }
 
         public Aluno Aluno { get; set; }
+        public IList<NotasMateria> NotasMateria { get; set; }
     }
 }

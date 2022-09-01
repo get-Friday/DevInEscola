@@ -12,5 +12,7 @@ namespace Escola.Domain.Models
         public Guid BoletimId { get; set; }
         public Guid MateriaId { get; set; }
         public int Nota { get; set; }
+
+        public Boletim Boletim { get; set; }
     }
 }
