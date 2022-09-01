@@ -29,6 +29,10 @@ namespace Escola.Infra.DataBase.Mappings
             builder.HasOne<Boletim>(nt => nt.Boletim)
                 .WithMany(b => b.NotasMateria)
                 .HasForeignKey(nt => nt.BoletimId);
+
+            builder.HasOne<Materia>(nt => nt.Materia)
+                .WithMany()
+                .HasForeignKey(nt => nt.MateriaId);
         }
     }
 }
