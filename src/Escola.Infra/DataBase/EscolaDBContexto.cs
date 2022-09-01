@@ -10,8 +10,11 @@ namespace Escola.Infra.DataBase
 {
     public class EscolaDBContexto : DbContext
     {
-        public DbSet<Aluno> Alunos {get; set;}
-        
+        public DbSet<Aluno> Alunos {get; set; }
+        public DbSet<Boletim> Boletins { get; set; }
+        public DbSet<NotasMateria> NotasMateria { get; set; }
+        public DbSet<Materia> Materias { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options){
             options.UseSqlServer("Password=YourStrong@Passw0rd;Persist Security Info=True;User ID=sa;Initial Catalog=EscolaDB;Data Source=tcp:localhost,1433");
         }
