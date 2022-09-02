@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Escola.Domain.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,18 @@ namespace Escola.Domain.Models
     {
         public Guid Id { get; set; } = new Guid();
         public string Nome { get; set; }
+        public Materia()
+        {
+        }
+        public Materia(MateriaDTO materia)
+        {
+            Id = materia.Id;
+            Nome = materia.Nome;
+        }
+        public void Update(MateriaDTO materia)
+        {
+            Id = materia.Id;
+            Nome = materia.Nome;
+        }
     }
 }
