@@ -27,6 +27,13 @@ namespace Escola.Domain.Services
         {
             return new MateriaDTO(_materiaRepositorio.ObterPorId(id));
         }
+        public IList<MateriaDTO> ObterPorNome(string nome)
+        {
+            return _materiaRepositorio
+                .ObterPorNome(nome)
+                .Select(m => new MateriaDTO(m))
+                .ToList();
+        }
         public void Inserir(MateriaDTO materia)
         {
             throw new NotImplementedException();

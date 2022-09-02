@@ -24,5 +24,12 @@ namespace Escola.Api.Controllers
         {
             return Ok(_materiaServico.ObterPorId(id));
         }
+        [HttpGet]
+        public IActionResult ObterPorNome(
+            [FromQuery] string nome
+        )
+        {
+            return Ok(_materiaServico.ObterPorNome(nome));
+        }
     }
 }

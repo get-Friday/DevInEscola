@@ -24,6 +24,11 @@ namespace Escola.Infra.DataBase.Repositories
         {
             return _contexto.Materias.Find(id);
         }
+        public IEnumerable<Materia> ObterPorNome(string nome)
+        {
+            return _contexto.Materias
+                .Where(m => m.Nome.Contains(nome));
+        }
         public void Inserir(Materia materia)
         {
             throw new NotImplementedException();
