@@ -11,6 +11,7 @@ namespace Escola.Domain.Interfaces.Repositories
     {
         IEnumerable<Materia> ObterTodos();
         Materia ObterPorId(Guid id);
+        IEnumerable<Materia> ObterPorNome(string nome);
         void Inserir (Materia materia);
         void Excluir (Materia materia);
         void Alterar (Materia materia);
