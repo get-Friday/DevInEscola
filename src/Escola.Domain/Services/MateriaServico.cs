@@ -18,7 +18,10 @@ namespace Escola.Domain.Services
         }
         public IList<MateriaDTO> ObterTodos()
         {
-            throw new NotImplementedException();
+            return _materiaRepositorio
+                .ObterTodos()
+                .Select(m => new MateriaDTO(m))
+                .ToList();
         }
         public MateriaDTO ObterPorId(Guid id)
         {

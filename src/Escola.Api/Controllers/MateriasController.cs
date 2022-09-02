@@ -12,5 +12,10 @@ namespace Escola.Api.Controllers
         {
             _materiaServico = materiaServico;
         }
+        [HttpGet]
+        public IActionResult ObterTodos()
+        {
+            return Ok(_materiaServico.ObterTodos());
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace Escola.Infra.DataBase.Repositories
 
         public IEnumerable<Materia> ObterTodos()
         {
-            throw new NotImplementedException();
+            return _contexto.Materias;
         }
         public Materia ObterPorId(Guid id)
         {
