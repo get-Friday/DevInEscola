@@ -22,7 +22,7 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public Materia ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return _contexto.Materias.Find(id);
         }
         public void Inserir(Materia materia)
         {

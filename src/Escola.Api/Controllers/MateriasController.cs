@@ -17,5 +17,12 @@ namespace Escola.Api.Controllers
         {
             return Ok(_materiaServico.ObterTodos());
         }
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(
+            [FromRoute] Guid id   
+        )
+        {
+            return Ok(_materiaServico.ObterPorId(id));
+        }
     }
 }

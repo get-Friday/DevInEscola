@@ -25,7 +25,7 @@ namespace Escola.Domain.Services
         }
         public MateriaDTO ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return new MateriaDTO(_materiaRepositorio.ObterPorId(id));
         }
         public void Inserir(MateriaDTO materia)
         {
