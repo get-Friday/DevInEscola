@@ -12,5 +12,12 @@ namespace Escola.Api.Controllers
         {
             _boletimServico = boletimServico;
         }
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(
+            [FromRoute] Guid id    
+        )
+        {
+            return Ok(_boletimServico.ObterPorId(id));
+        }
     }
 }
