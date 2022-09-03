@@ -14,7 +14,7 @@ namespace Escola.Domain.Interfaces.Services
         MateriaDTO ObterPorId(Guid id);
         IList<MateriaDTO> ObterPorNome(string nome);
         void Inserir(MateriaDTO materia);
-        void Excluir(MateriaDTO materia);
+        void Excluir(Guid id);
         void Alterar(MateriaDTO materia);
 
     }
