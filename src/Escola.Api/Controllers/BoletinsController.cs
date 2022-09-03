@@ -38,5 +38,13 @@ namespace Escola.Api.Controllers
             _boletimServico.Alterar(boletim);
             return StatusCode(StatusCodes.Status201Created);
         }
+        [HttpDelete("{id}")]
+        public IActionResult Excluir(
+            [FromRoute] Guid id    
+        )
+        {
+            _boletimServico.Excluir(id);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
     }
 }
