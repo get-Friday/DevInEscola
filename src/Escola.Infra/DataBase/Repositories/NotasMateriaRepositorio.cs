@@ -30,7 +30,8 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Alterar(NotasMateria notasMateria)
         {
-            throw new NotImplementedException();
+            _contexto.NotasMateria.Update(notasMateria);
+            _contexto.SaveChanges();
         }
     }
 }
