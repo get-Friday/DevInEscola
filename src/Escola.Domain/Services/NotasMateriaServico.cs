@@ -28,7 +28,11 @@ namespace Escola.Domain.Services
         }
         public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            if (!_notasMateriaRepositorio.ExisteNotasMateria(id))
+                throw new InexistenteException("NotasMateria não encontrado");
+
+            NotasMateria notasMateria = _notasMateriaRepositorio.ObterPorId(id);
+            _notasMateriaRepositorio.Excluir(notasMateria);
         }
         public void Alterar(NotasMateriaDTO notasMateria)
         {
