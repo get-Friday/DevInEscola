@@ -25,7 +25,12 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Alterar(Boletim boletim)
         {
-            throw new NotImplementedException();
+            _contexto.Boletins.Update(boletim);
+            _contexto.SaveChanges();
+        }
+        public bool ExisteBoletim(Guid id)
+        {
+            return _contexto.Boletins.Any(b => b.Id == id);
         }
     }
 }
