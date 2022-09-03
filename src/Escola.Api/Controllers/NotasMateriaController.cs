@@ -38,5 +38,13 @@ namespace Escola.Api.Controllers
             _notasMateriaServico.Alterar(notasMateria);
             return StatusCode(StatusCodes.Status201Created);
         }
+        [HttpDelete("{id}")]
+        public IActionResult Excluir(
+            [FromRoute] Guid id    
+        )
+        {
+            _notasMateriaServico.Excluir(id);
+            return StatusCode(StatusCodes.Status200OK);
+        }
     }
 }
