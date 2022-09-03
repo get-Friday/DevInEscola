@@ -31,10 +31,15 @@ namespace Escola.Domain.Services
         }
         public IList<MateriaDTO> ObterPorNome(string nome)
         {
-            return _materiaRepositorio
+            var materias = _materiaRepositorio
                 .ObterPorNome(nome)
                 .Select(m => new MateriaDTO(m))
                 .ToList();
+
+            if (!materias.Any())
+                throw new InexistenteException("Matéria não encontrada");
+
+            return materias;
         }
         public void Inserir(MateriaDTO materia)
         {
