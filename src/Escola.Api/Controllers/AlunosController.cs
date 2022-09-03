@@ -79,5 +79,12 @@ namespace Escola.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+        [HttpGet("{id}/boletins")]
+        public IActionResult ObterBoletins(
+            [FromRoute] Guid id    
+        )
+        {
+            return Ok(_alunoServico.ObterBoletim(id));
+        }
     }
 }
