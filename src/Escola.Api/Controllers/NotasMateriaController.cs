@@ -13,7 +13,7 @@ namespace Escola.Api.Controllers
         {
             _notasMateriaServico = notasMateriaServico;
         }
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IActionResult ObterPorId(
             [FromRoute] Guid id
         )
