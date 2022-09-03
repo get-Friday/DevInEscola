@@ -23,7 +23,7 @@ namespace Escola.Domain.Services
         }
         public void Inserir(NotasMateriaDTO notasMateria)
         {
-            throw new NotImplementedException();
+            _notasMateriaRepositorio.Inserir(new NotasMateria(notasMateria));
         }
         public void Excluir(Guid id)
         {
