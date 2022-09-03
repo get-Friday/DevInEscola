@@ -31,12 +31,12 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Inserir(Materia materia)
         {
-            _contexto.Add(materia);
+            _contexto.Materias.Add(materia);
             _contexto.SaveChanges();
         }
         public void Excluir(Materia materia)
         {
-            _contexto.Remove(materia);
+            _contexto.Materias.Remove(materia);
             _contexto.SaveChanges();
         }
         public void Alterar(Materia materia)
