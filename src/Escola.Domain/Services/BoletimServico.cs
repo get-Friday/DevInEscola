@@ -1,6 +1,7 @@
 ﻿using Escola.Domain.DTO;
 using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Escola.Domain.Services
         }
         public void Inserir(BoletimDTO boletim)
         {
-            throw new NotImplementedException();
+            _boletimRepositorio.Inserir(new Boletim(boletim));
         }
         public void Excluir(BoletimDTO boletim)
         {
