@@ -15,6 +15,6 @@ namespace Escola.Domain.Interfaces.Repositories
         void Inserir(Materia materia);
         void Excluir(Materia materia);
         void Alterar(Materia materia);
-        bool ExisteMateria(string materia);
+        bool ExisteMateria(string nome);
     }
 }

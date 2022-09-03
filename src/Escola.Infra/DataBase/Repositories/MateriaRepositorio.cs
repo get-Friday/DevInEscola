@@ -44,9 +44,9 @@ namespace Escola.Infra.DataBase.Repositories
             _contexto.Materias.Update(materia);
             _contexto.SaveChanges();
         }
-        public bool ExisteMateria(string materia)
+        public bool ExisteMateria(string nome)
         {
-            return _contexto.Materias.Any(m => m.Nome == materia);
+            return _contexto.Materias.Any(m => m.Nome == nome);
         }
     }
 }
