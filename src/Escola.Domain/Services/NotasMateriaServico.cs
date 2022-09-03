@@ -1,4 +1,5 @@
 ﻿using Escola.Domain.DTO;
+using Escola.Domain.Exceptions;
 using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Models;
@@ -31,6 +32,9 @@ namespace Escola.Domain.Services
         }
         public void Alterar(NotasMateriaDTO notasMateria)
         {
+            if (!_notasMateriaRepositorio.ExisteNotasMateria(notasMateria.Id))
+                throw new InexistenteException("NotasMateria não encontrado");
+
             NotasMateria notasMateriaDb = _notasMateriaRepositorio.ObterPorId(notasMateria.Id);
             notasMateriaDb.Update(notasMateria);
             _notasMateriaRepositorio.Alterar(notasMateriaDb);
