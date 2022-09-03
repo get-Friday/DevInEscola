@@ -43,9 +43,14 @@ namespace Escola.Domain.Services
 
             _materiaRepositorio.Inserir(new Materia(materia));
         }
-        public void Excluir(MateriaDTO materia)
+        public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            Materia materia = _materiaRepositorio.ObterPorId(id);
+
+            if (_materiaRepositorio.ExisteMateria(materia.Nome))
+                _materiaRepositorio.Excluir(materia);
+
+            throw new InexistenteException("Matéria não existe");
         }
         public void Alterar(MateriaDTO materia)
         {
