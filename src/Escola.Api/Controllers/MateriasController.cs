@@ -14,8 +14,12 @@ namespace Escola.Api.Controllers
             _materiaServico = materiaServico;
         }
         [HttpGet]
-        public IActionResult ObterTodos()
+        public IActionResult Obter(
+            [FromQuery] string nome    
+        )
         {
+            if (!string.IsNullOrEmpty(nome))
+                return Ok(_materiaServico.ObterPorNome(nome));
             return Ok(_materiaServico.ObterTodos());
         }
         [HttpGet("{id}")]
@@ -24,13 +28,6 @@ namespace Escola.Api.Controllers
         )
         {
             return Ok(_materiaServico.ObterPorId(id));
-        }
-        [HttpGet]
-        public IActionResult ObterPorNome(
-            [FromQuery] string nome
-        )
-        {
-            return Ok(_materiaServico.ObterPorNome(nome));
         }
         [HttpPost]
         public IActionResult Inserir(
