@@ -33,5 +33,9 @@ namespace Escola.Infra.DataBase.Repositories
             _contexto.NotasMateria.Update(notasMateria);
             _contexto.SaveChanges();
         }
+        public bool ExisteNotasMateria(Guid id)
+        {
+            return _contexto.NotasMateria.Any(nt => nt.Id == id);
+        }
     }
 }
