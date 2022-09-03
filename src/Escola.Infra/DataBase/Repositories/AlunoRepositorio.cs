@@ -46,5 +46,9 @@ namespace Escola.Infra.DataBase.Repositories
         {
             return _contexto.Alunos;
         }
+        public IEnumerable<Boletim> ObterBoletins(Guid id)
+        {
+            return _contexto.Boletins.Where(b => b.AlunoId == id);
+        }
     }
 }
