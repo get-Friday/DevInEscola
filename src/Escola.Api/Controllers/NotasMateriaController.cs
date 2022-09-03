@@ -28,5 +28,15 @@ namespace Escola.Api.Controllers
             _notasMateriaServico.Inserir(notasMateria);
             return StatusCode(StatusCodes.Status201Created);
         }
+        [HttpPut("{id}")]
+        public IActionResult Alterar(
+            [FromRoute] Guid id,
+            [FromBody] NotasMateriaDTO notasMateria
+        )
+        {
+            notasMateria.Id = id;
+            _notasMateriaServico.Alterar(notasMateria);
+            return StatusCode(StatusCodes.Status201Created);
+        }
     }
 }
