@@ -86,5 +86,13 @@ namespace Escola.Api.Controllers
         {
             return Ok(_alunoServico.ObterBoletins(id));
         }
+        [HttpGet("{idAluno}/boletins/{idBoletim}/NotasMateria")]
+        public IActionResult ObterNotasMateria(
+            [FromRoute] Guid idAluno,
+            [FromRoute] Guid idBoletim
+        )
+        {
+            return Ok(_alunoServico.ObterNotasMateria(idAluno, idBoletim));
+        }
     }
 }
