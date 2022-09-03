@@ -36,7 +36,8 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Excluir(Materia materia)
         {
-            throw new NotImplementedException();
+            _contexto.Remove(materia);
+            _contexto.SaveChanges();
         }
         public void Alterar(Materia materia)
         {
