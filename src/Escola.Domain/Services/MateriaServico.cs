@@ -47,10 +47,10 @@ namespace Escola.Domain.Services
         {
             Materia materia = _materiaRepositorio.ObterPorId(id);
 
-            if (_materiaRepositorio.ExisteMateria(materia.Nome))
-                _materiaRepositorio.Excluir(materia);
+            if (materia == null)
+                throw new InexistenteException("Matéria não encontrada");
 
-            throw new InexistenteException("Matéria não existe");
+            _materiaRepositorio.Excluir(materia);
         }
         public void Alterar(MateriaDTO materia)
         {
