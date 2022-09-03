@@ -61,5 +61,11 @@ namespace Escola.Domain.Services
 
             return boletins;
         }
+        public IList<NotasMateriaDTO> ObterNotasMateria(Guid idAluno, Guid idBoletim)
+        {
+            return _alunoRepositorio.ObterNotasMateria(idAluno, idBoletim)
+                .Select(nt => new NotasMateriaDTO(nt))
+                .ToList();
+        }
     }
 }
