@@ -35,6 +35,10 @@ namespace Escola.Api.Config
                     status = HttpStatusCode.NotAcceptable;
                     message = exception.Message;
                     break;
+                case InexistenteException:
+                    status = HttpStatusCode.BadRequest;
+                    message = exception.Message;
+                    break;
                 default:
                     status = HttpStatusCode.InternalServerError;
                     message = "Ocorreu um erro interno. Contatar TI";
