@@ -1,6 +1,8 @@
 ﻿using Escola.Domain.DTO;
+using Escola.Domain.Exceptions;
 using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +38,10 @@ namespace Escola.Domain.Services
         }
         public void Inserir(MateriaDTO materia)
         {
-            throw new NotImplementedException();
+            if (_materiaRepositorio.ExisteMateria(materia.Nome))
+                throw new DuplicadoException("Materia já existe");
+
+            _materiaRepositorio.Inserir(new Materia(materia));
         }
         public void Excluir(MateriaDTO materia)
         {

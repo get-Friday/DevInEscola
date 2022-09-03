@@ -31,7 +31,8 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Inserir(Materia materia)
         {
-            throw new NotImplementedException();
+            _contexto.Add(materia);
+            _contexto.SaveChanges();
         }
         public void Excluir(Materia materia)
         {
@@ -40,6 +41,10 @@ namespace Escola.Infra.DataBase.Repositories
         public void Alterar(Materia materia)
         {
             throw new NotImplementedException();
+        }
+        public bool ExisteMateria(string materia)
+        {
+            return _contexto.Materias.Any(m => m.Nome == materia);
         }
     }
 }

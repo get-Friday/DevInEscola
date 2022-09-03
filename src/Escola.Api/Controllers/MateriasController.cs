@@ -1,4 +1,5 @@
-﻿using Escola.Domain.Interfaces.Services;
+﻿using Escola.Domain.DTO;
+using Escola.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Escola.Api.Controllers
@@ -30,6 +31,14 @@ namespace Escola.Api.Controllers
         )
         {
             return Ok(_materiaServico.ObterPorNome(nome));
+        }
+        [HttpPost]
+        public IActionResult Inserir(
+            [FromBody] MateriaDTO materia
+        )
+        {
+            _materiaServico.Inserir(materia);
+            return StatusCode(StatusCodes.Status201Created);
         }
     }
 }
