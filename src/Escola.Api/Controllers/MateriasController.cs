@@ -48,5 +48,15 @@ namespace Escola.Api.Controllers
             _materiaServico.Excluir(id);
             return StatusCode(StatusCodes.Status204NoContent);
         }
+        [HttpPost("{id}")]
+        public IActionResult Alterar(
+            [FromRoute] Guid id,
+            [FromBody] MateriaDTO materia
+        )
+        {
+            materia.Id = id;
+            _materiaServico.Alterar(materia);
+            return StatusCode(StatusCodes.Status201Created);
+        }
     }
 }
