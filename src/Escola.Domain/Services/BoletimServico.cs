@@ -16,9 +16,9 @@ namespace Escola.Domain.Services
         {
             _boletimRepositorio = boletimRepositorio;
         }
-        public BoletimDTO ObterPorId(Guid guid)
+        public BoletimDTO ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return new BoletimDTO(_boletimRepositorio.ObterPorId(id));
         }
         public void Inserir(BoletimDTO boletim)
         {
