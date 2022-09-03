@@ -36,7 +36,7 @@ namespace Escola.Api.Config
                     message = exception.Message;
                     break;
                 case InexistenteException:
-                    status = HttpStatusCode.BadRequest;
+                    status = HttpStatusCode.NotFound;
                     message = exception.Message;
                     break;
                 default:
