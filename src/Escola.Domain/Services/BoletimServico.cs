@@ -1,4 +1,5 @@
 ﻿using Escola.Domain.DTO;
+using Escola.Domain.Exceptions;
 using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Models;
@@ -31,7 +32,12 @@ namespace Escola.Domain.Services
         }
         public void Alterar(BoletimDTO boletim)
         {
-            throw new NotImplementedException();
+            if (!_boletimRepositorio.ExisteBoletim(boletim.Id))
+                throw new InexistenteException("Boletim não encontrado");
+
+            Boletim boletimDb = _boletimRepositorio.ObterPorId(boletim.Id);
+            boletimDb.Update(boletim);
+            _boletimRepositorio.Alterar(boletimDb);
         }
     }
 }
