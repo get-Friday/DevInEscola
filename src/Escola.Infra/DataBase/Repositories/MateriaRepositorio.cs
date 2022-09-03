@@ -41,7 +41,8 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Alterar(Materia materia)
         {
-            throw new NotImplementedException();
+            _contexto.Materias.Update(materia);
+            _contexto.SaveChanges();
         }
         public bool ExisteMateria(string materia)
         {
