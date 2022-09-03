@@ -15,5 +15,6 @@ namespace Escola.Domain.Interfaces.Repositories
         void Alterar (Aluno aluno);
         bool ExisteMatricula (int matricula);
         IEnumerable<Boletim> ObterBoletins(Guid id);
+        IEnumerable<NotasMateria> ObterNotasMateria(Guid idAluno, Guid idBoletim);
     }
 }
