@@ -26,7 +26,8 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Excluir(NotasMateria notasMateria)
         {
-            throw new NotImplementedException();
+            _contexto.NotasMateria.Remove(notasMateria);
+            _contexto.SaveChanges();
         }
         public void Alterar(NotasMateria notasMateria)
         {
