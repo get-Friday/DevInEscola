@@ -10,9 +10,9 @@ namespace Escola.Infra.DataBase.Repositories
         {
             _contexto = contexto;
         }
-        public Boletim ObterPorId(Guid guid)
+        public Boletim ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return _contexto.Boletins.Find(id);
         }
         public void Inserir(Boletim boletim)
         {
