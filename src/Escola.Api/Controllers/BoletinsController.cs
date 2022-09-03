@@ -28,5 +28,15 @@ namespace Escola.Api.Controllers
             _boletimServico.Inserir(boletim);
             return StatusCode(StatusCodes.Status201Created);
         }
+        [HttpPut("{id}")]
+        public IActionResult Alterar(
+            [FromRoute] Guid id,
+            [FromBody] BoletimDTO boletim
+        )
+        {
+            boletim.Id = id;
+            _boletimServico.Alterar(boletim);
+            return StatusCode(StatusCodes.Status201Created);
+        }
     }
 }
