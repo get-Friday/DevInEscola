@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Escola.Domain.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,18 @@ namespace Escola.Domain.Models
 
         public Aluno Aluno { get; set; }
         public IList<NotasMateria> NotasMateria { get; set; }
+        public Boletim()
+        {
+        }
+        public Boletim(BoletimDTO boletim)
+        {
+            Id = boletim.Id;
+            AlunoId = boletim.AlunoId;
+        }
+        public void Update(BoletimDTO boletim)
+        {
+            Id = boletim.Id;
+            AlunoId = boletim.AlunoId;
+        }
     }
 }
