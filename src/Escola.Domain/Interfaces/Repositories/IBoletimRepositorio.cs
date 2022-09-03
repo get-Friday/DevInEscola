@@ -13,5 +13,6 @@ namespace Escola.Domain.Interfaces.Repositories
         void Inserir(Boletim boletim);
         void Excluir(Boletim boletim);
         void Alterar(Boletim boletim);
+        bool ExisteBoletim(Guid id);
     }
 }
