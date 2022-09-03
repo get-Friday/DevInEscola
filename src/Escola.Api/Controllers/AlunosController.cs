@@ -84,7 +84,7 @@ namespace Escola.Api.Controllers
             [FromRoute] Guid id    
         )
         {
-            return Ok(_alunoServico.ObterBoletim(id));
+            return Ok(_alunoServico.ObterBoletins(id));
         }
     }
 }
