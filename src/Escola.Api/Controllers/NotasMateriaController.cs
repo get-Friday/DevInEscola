@@ -12,5 +12,12 @@ namespace Escola.Api.Controllers
         {
             _notasMateriaServico = notasMateriaServico;
         }
+        [HttpGet("id")]
+        public IActionResult ObterPorId(
+            [FromRoute] Guid id
+        )
+        {
+            return Ok(_notasMateriaServico.ObterPorId(id));
+        }
     }
 }
