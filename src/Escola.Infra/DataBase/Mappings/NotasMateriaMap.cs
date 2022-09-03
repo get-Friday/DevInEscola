@@ -32,7 +32,8 @@ namespace Escola.Infra.DataBase.Mappings
 
             builder.HasOne<Materia>(nt => nt.Materia)
                 .WithMany()
-                .HasForeignKey(nt => nt.MateriaId);
+                .HasForeignKey(nt => nt.MateriaId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
