@@ -15,9 +15,9 @@ namespace Escola.Infra.DataBase.Repositories
         {
             _contexto = contexto;
         }
-        public NotasMateria ObterPorId(Guid guid)
+        public NotasMateria ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return _contexto.NotasMateria.Find(id);
         }
         public void Inserir(NotasMateria notasMateria)
         {
