@@ -26,9 +26,13 @@ namespace Escola.Domain.Services
         {
             _boletimRepositorio.Inserir(new Boletim(boletim));
         }
-        public void Excluir(BoletimDTO boletim)
+        public void Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            if (!_boletimRepositorio.ExisteBoletim(id))
+                throw new InexistenteException("Boletim não encontrado");
+
+            Boletim boletim = _boletimRepositorio.ObterPorId(id);
+            _boletimRepositorio.Excluir(boletim);
         }
         public void Alterar(BoletimDTO boletim)
         {
