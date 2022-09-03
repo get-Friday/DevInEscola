@@ -31,7 +31,9 @@ namespace Escola.Domain.Services
         }
         public void Alterar(NotasMateriaDTO notasMateria)
         {
-            throw new NotImplementedException();
+            NotasMateria notasMateriaDb = _notasMateriaRepositorio.ObterPorId(notasMateria.Id);
+            notasMateriaDb.Update(notasMateria);
+            _notasMateriaRepositorio.Alterar(notasMateriaDb);
         }
     }
 }
