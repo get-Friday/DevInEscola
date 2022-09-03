@@ -16,7 +16,8 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public void Inserir(Boletim boletim)
         {
-            throw new NotImplementedException();
+            _contexto.Boletins.Add(boletim);
+            _contexto.SaveChanges();
         }
         public void Excluir(Boletim boletim)
         {
