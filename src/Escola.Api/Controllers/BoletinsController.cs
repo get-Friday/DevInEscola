@@ -1,4 +1,5 @@
-﻿using Escola.Domain.Interfaces.Services;
+﻿using Escola.Domain.DTO;
+using Escola.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Escola.Api.Controllers
@@ -18,6 +19,14 @@ namespace Escola.Api.Controllers
         )
         {
             return Ok(_boletimServico.ObterPorId(id));
+        }
+        [HttpPost]
+        public IActionResult Inserir(
+            [FromBody] BoletimDTO boletim
+        )
+        {
+            _boletimServico.Inserir(boletim);
+            return StatusCode(StatusCodes.Status201Created);
         }
     }
 }
