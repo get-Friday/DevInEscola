@@ -24,7 +24,8 @@ namespace Escola.Infra.DataBase.Mappings
 
             builder.HasOne<Aluno>(b => b.Aluno)
                 .WithMany(a => a.Boletins)
-                .HasForeignKey(b => b.AlunoId);
+                .HasForeignKey(b => b.AlunoId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
