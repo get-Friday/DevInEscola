@@ -17,9 +17,9 @@ namespace Escola.Domain.Services
         {
             _notasMateriaRepositorio = notasMateriaRepositorio;
         }
-        public NotasMateriaDTO ObterPorId(Guid guid)
+        public NotasMateriaDTO ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return new NotasMateriaDTO(_notasMateriaRepositorio.ObterPorId(id));
         }
         public void Inserir(NotasMateriaDTO notasMateria)
         {
