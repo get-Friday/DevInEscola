@@ -59,7 +59,9 @@ namespace Escola.Domain.Services
         }
         public void Alterar(MateriaDTO materia)
         {
-            throw new NotImplementedException();
+            Materia materiaDb = _materiaRepositorio.ObterPorId(materia.Id);
+            materiaDb.Update(materia);
+            _materiaRepositorio.Alterar(materiaDb);
         }
     }
 }
