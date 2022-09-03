@@ -59,6 +59,9 @@ namespace Escola.Domain.Services
         }
         public void Alterar(MateriaDTO materia)
         {
+            if (!_materiaRepositorio.ExisteMateria(materia.Nome))
+                throw new InexistenteException("Materia não encontrada");
+
             Materia materiaDb = _materiaRepositorio.ObterPorId(materia.Id);
             materiaDb.Update(materia);
             _materiaRepositorio.Alterar(materiaDb);
