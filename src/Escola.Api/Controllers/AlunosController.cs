@@ -1,12 +1,7 @@
-using System.Diagnostics.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Escola.Domain.DTO;
 using Escola.Domain.Interfaces.Services;
-using Escola.Domain.Exceptions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Escola.Api.Controllers
 {
@@ -15,9 +10,11 @@ namespace Escola.Api.Controllers
     public class AlunosController : ControllerBase
     {
         private readonly IAlunoServico _alunoServico;
-        public AlunosController(IAlunoServico alunoServico)
+        private readonly IMemoryCache _memoryCache;
+        public AlunosController(IAlunoServico alunoServico, IMemoryCache memoryCache)
         {
             _alunoServico = alunoServico;
+            _memoryCache = memoryCache;
         }
 
         [HttpGet("{id}")]
@@ -25,26 +22,17 @@ namespace Escola.Api.Controllers
             [FromRoute] Guid id
         )
         {
-            try
+            if (!_memoryCache.TryGetValue(id, out AlunoDTO aluno))
             {
-                return Ok(_alunoServico.ObterPorId(id));
+                aluno = _alunoServico.ObterPorId(id);
+                _memoryCache.Set<AlunoDTO>($"aluno:{id}", aluno, new TimeSpan(0,2,0));
             }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            return Ok(aluno);
         }
         [HttpGet]
         public IActionResult ObterTodos()
         {
-            try
-            {
-                return Ok(_alunoServico.ObterTodos());
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            return Ok(_alunoServico.ObterTodos());
         }
         [HttpPost]
         public IActionResult Inserir (AlunoDTO aluno)
