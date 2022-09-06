@@ -4,6 +4,7 @@ using Escola.Infra.DataBase.Repositories;
 using Escola.Domain.Services;
 using Escola.Infra.DataBase;
 using Escola.Api.Config;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,19 @@ builder.Services.AddScoped<IAlunoRepositorio,AlunoRepositorio>();
 builder.Services.AddScoped<IAlunoServico,AlunoServico>();
 builder.Services.AddScoped<IMateriaRepositorio,MateriaRepositorio>();
 builder.Services.AddScoped<IMateriaServico, MateriaServico>();
+
+builder.Services.AddApiVersioning(setup =>
+{
+    setup.DefaultApiVersion = new ApiVersion(1, 0);
+    setup.AssumeDefaultVersionWhenUnspecified = true;
+    setup.ReportApiVersions = true;
+});
+
+builder.Services.AddVersionedApiExplorer(setup =>
+{
+    setup.GroupNameFormat = "'v'VVV";
+    setup.SubstituteApiVersionInUrl = true;
+});
 
 builder.Services.AddMemoryCache();
 
