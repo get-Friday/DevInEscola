@@ -36,10 +36,10 @@ namespace Escola.Domain.Services
             return new AlunoDTO(_alunoRepositorio.ObterPorId(id));
         }
 
-        public IList<AlunoDTO> ObterTodos()
+        public IList<AlunoDTO> ObterTodos(Paginacao paginacao)
         {
             return _alunoRepositorio
-                .ObterTodos()
+                .ObterTodos(paginacao)
                 .Select(a => new AlunoDTO(a))
                 .ToList();
         }
