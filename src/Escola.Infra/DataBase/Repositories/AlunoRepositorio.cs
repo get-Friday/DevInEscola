@@ -48,6 +48,10 @@ namespace Escola.Infra.DataBase.Repositories
                 .Take(paginacao.Take)
                 .Skip(paginacao.Skip);
         }
+        public int ObterTotal()
+        {
+            return _contexto.Alunos.Count();
+        }
         public IEnumerable<Boletim> ObterBoletins(Guid id)
         {
             return _contexto.Boletins.Where(b => b.AlunoId == id);
