@@ -18,7 +18,8 @@ namespace Escola.Api.Controllers
             [FromRoute] Guid id
         )
         {
-            return Ok(_notasMateriaServico.ObterPorId(id));
+            _notasMateriaServico.ObterPorId(id);
+            return StatusCode(StatusCodes.Status200OK);
         }
         [HttpPost]
         public IActionResult Inserir(
