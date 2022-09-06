@@ -32,8 +32,7 @@ namespace Escola.Api.Controllers
         [HttpGet]
         public IActionResult ObterTodos()
         {
-            _alunoServico.ObterTodos();
-            return StatusCode(StatusCodes.Status200OK);
+            return Ok(_alunoServico.ObterTodos());
         }
         [HttpPost]
         public IActionResult Inserir (AlunoDTO aluno)
@@ -63,8 +62,7 @@ namespace Escola.Api.Controllers
             [FromRoute] Guid id
         )
         {
-            _alunoServico.ObterBoletins(id);
-            return StatusCode(StatusCodes.Status200OK);
+            return Ok(_alunoServico.ObterBoletins(id));
         }
         [HttpGet("{idAluno}/boletins/{idBoletim}/NotasMateria")]
         public IActionResult ObterNotasMateria(
@@ -72,8 +70,7 @@ namespace Escola.Api.Controllers
             [FromRoute] Guid idBoletim
         )
         {
-            _alunoServico.ObterNotasMateria(idAluno, idBoletim);
-            return StatusCode(StatusCodes.Status200OK);
+            return Ok(_alunoServico.ObterNotasMateria(idAluno, idBoletim));
         }
     }
 }
