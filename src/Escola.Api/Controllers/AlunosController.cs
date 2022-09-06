@@ -42,6 +42,7 @@ namespace Escola.Api.Controllers
         }
         [HttpDelete("{id}")]
         public IActionResult Deletar(Guid id){
+            _memoryCache.Remove($"aluno:{id}");
             _alunoServico.Excluir(id);
             return StatusCode(StatusCodes.Status204NoContent);
         }
