@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Escola.Domain.DTO;
 using Escola.Domain.Interfaces.Services;
 using Microsoft.Extensions.Caching.Memory;
+using Escola.Domain.Models;
 
 namespace Escola.Api.Controllers
 {
@@ -30,9 +31,11 @@ namespace Escola.Api.Controllers
             return Ok(aluno);
         }
         [HttpGet]
-        public IActionResult ObterTodos()
+        public IActionResult ObterTodos(int take = 5, int skip = 0)
         {
-            return Ok(_alunoServico.ObterTodos());
+            Paginacao paginacao = new(take, skip);
+
+            return Ok(_alunoServico.ObterTodos(paginacao));
         }
         [HttpPost]
         public IActionResult Inserir (AlunoDTO aluno)
