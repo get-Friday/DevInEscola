@@ -2,7 +2,7 @@
 using Escola.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Escola.Api.Controllers
+namespace Escola.Api.Controllers.V1
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -15,7 +15,7 @@ namespace Escola.Api.Controllers
         }
         [HttpGet]
         public IActionResult Obter(
-            [FromQuery] string nome    
+            [FromQuery] string nome
         )
         {
             if (!string.IsNullOrEmpty(nome))
@@ -24,7 +24,7 @@ namespace Escola.Api.Controllers
         }
         [HttpGet("{id}")]
         public IActionResult ObterPorId(
-            [FromRoute] Guid id   
+            [FromRoute] Guid id
         )
         {
             return Ok(_materiaServico.ObterPorId(id));
@@ -39,7 +39,7 @@ namespace Escola.Api.Controllers
         }
         [HttpDelete("{id}")]
         public IActionResult Excluir(
-            [FromRoute] Guid id    
+            [FromRoute] Guid id
         )
         {
             _materiaServico.Excluir(id);

@@ -2,49 +2,49 @@
 using Escola.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Escola.Api.Controllers
+namespace Escola.Api.Controllers.V1
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class NotasMateriaController : Controller
+    public class BoletinsController : Controller
     {
-        private readonly INotasMateriaServico _notasMateriaServico;
-        public NotasMateriaController(INotasMateriaServico notasMateriaServico)
+        private readonly IBoletimServico _boletimServico;
+        public BoletinsController(IBoletimServico boletimServico)
         {
-            _notasMateriaServico = notasMateriaServico;
+            _boletimServico = boletimServico;
         }
         [HttpGet("{id}")]
         public IActionResult ObterPorId(
             [FromRoute] Guid id
         )
         {
-            return Ok(_notasMateriaServico.ObterPorId(id));
+            return Ok(_boletimServico.ObterPorId(id));
         }
         [HttpPost]
         public IActionResult Inserir(
-            [FromBody] NotasMateriaDTO notasMateria
+            [FromBody] BoletimDTO boletim
         )
         {
-            _notasMateriaServico.Inserir(notasMateria);
+            _boletimServico.Inserir(boletim);
             return StatusCode(StatusCodes.Status201Created);
         }
         [HttpPut("{id}")]
         public IActionResult Alterar(
             [FromRoute] Guid id,
-            [FromBody] NotasMateriaDTO notasMateria
+            [FromBody] BoletimDTO boletim
         )
         {
-            notasMateria.Id = id;
-            _notasMateriaServico.Alterar(notasMateria);
+            boletim.Id = id;
+            _boletimServico.Alterar(boletim);
             return StatusCode(StatusCodes.Status201Created);
         }
         [HttpDelete("{id}")]
         public IActionResult Excluir(
-            [FromRoute] Guid id    
+            [FromRoute] Guid id
         )
         {
-            _notasMateriaServico.Excluir(id);
-            return StatusCode(StatusCodes.Status200OK);
+            _boletimServico.Excluir(id);
+            return StatusCode(StatusCodes.Status204NoContent);
         }
     }
 }

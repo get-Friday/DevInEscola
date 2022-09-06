@@ -4,7 +4,7 @@ using Escola.Domain.Interfaces.Services;
 using Microsoft.Extensions.Caching.Memory;
 using Escola.Domain.Models;
 
-namespace Escola.Api.Controllers
+namespace Escola.Api.Controllers.V1
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -26,7 +26,7 @@ namespace Escola.Api.Controllers
             if (!_memoryCache.TryGetValue($"aluno:{id}", out AlunoDTO aluno))
             {
                 aluno = _alunoServico.ObterPorId(id);
-                _memoryCache.Set<AlunoDTO>($"aluno:{id}", aluno, new TimeSpan(0,2,0));
+                _memoryCache.Set($"aluno:{id}", aluno, new TimeSpan(0, 2, 0));
             }
             return Ok(aluno);
         }
@@ -39,13 +39,14 @@ namespace Escola.Api.Controllers
             return Ok(_alunoServico.ObterTodos(paginacao));
         }
         [HttpPost]
-        public IActionResult Inserir (AlunoDTO aluno)
+        public IActionResult Inserir(AlunoDTO aluno)
         {
             _alunoServico.Inserir(aluno);
             return StatusCode(StatusCodes.Status201Created);
         }
         [HttpDelete("{id}")]
-        public IActionResult Deletar(Guid id){
+        public IActionResult Deletar(Guid id)
+        {
             _memoryCache.Remove($"aluno:{id}");
             _alunoServico.Excluir(id);
             return StatusCode(StatusCodes.Status204NoContent);
@@ -58,7 +59,7 @@ namespace Escola.Api.Controllers
         {
             aluno.Id = id;
             _alunoServico.Alterar(aluno);
-            _memoryCache.Set<AlunoDTO>($"aluno:{id}", aluno, new TimeSpan(0, 2, 0));
+            _memoryCache.Set($"aluno:{id}", aluno, new TimeSpan(0, 2, 0));
             return StatusCode(StatusCodes.Status201Created);
         }
         [HttpGet("{id}/boletins")]
