@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Escola.Api.Controllers.V1
 {
     [ApiController]
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     public class MateriasController : ControllerBase
     {
@@ -13,6 +14,7 @@ namespace Escola.Api.Controllers.V1
         {
             _materiaServico = materiaServico;
         }
+        [MapToApiVersion("1.0")]
         [HttpGet]
         public IActionResult Obter(
             [FromQuery] string nome
@@ -22,6 +24,7 @@ namespace Escola.Api.Controllers.V1
                 return Ok(_materiaServico.ObterPorNome(nome));
             return Ok(_materiaServico.ObterTodos());
         }
+        [MapToApiVersion("1.0")]
         [HttpGet("{id}")]
         public IActionResult ObterPorId(
             [FromRoute] Guid id
@@ -29,6 +32,7 @@ namespace Escola.Api.Controllers.V1
         {
             return Ok(_materiaServico.ObterPorId(id));
         }
+        [MapToApiVersion("1.0")]
         [HttpPost]
         public IActionResult Inserir(
             [FromBody] MateriaDTO materia
@@ -37,6 +41,7 @@ namespace Escola.Api.Controllers.V1
             _materiaServico.Inserir(materia);
             return StatusCode(StatusCodes.Status201Created);
         }
+        [MapToApiVersion("1.0")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(
             [FromRoute] Guid id
@@ -45,6 +50,7 @@ namespace Escola.Api.Controllers.V1
             _materiaServico.Excluir(id);
             return StatusCode(StatusCodes.Status204NoContent);
         }
+        [MapToApiVersion("1.0")]
         [HttpPut("{id}")]
         public IActionResult Alterar(
             [FromRoute] Guid id,
