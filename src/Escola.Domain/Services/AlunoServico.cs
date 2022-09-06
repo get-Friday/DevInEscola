@@ -49,6 +49,10 @@ namespace Escola.Domain.Services
             alunoDb.Update(aluno);
             _alunoRepositorio.Alterar(alunoDb);
         }
+        public int ObterTotal()
+        {
+            return _alunoRepositorio.ObterTotal();
+        }
         public IList<BoletimDTO> ObterBoletins(Guid id)
         {
             IList<BoletimDTO> boletins = _alunoRepositorio
