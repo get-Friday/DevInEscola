@@ -22,7 +22,7 @@ namespace Escola.Api.Controllers
             [FromRoute] Guid id
         )
         {
-            if (!_memoryCache.TryGetValue(id, out AlunoDTO aluno))
+            if (!_memoryCache.TryGetValue($"aluno:{id}", out AlunoDTO aluno))
             {
                 aluno = _alunoServico.ObterPorId(id);
                 _memoryCache.Set<AlunoDTO>($"aluno:{id}", aluno, new TimeSpan(0,2,0));
