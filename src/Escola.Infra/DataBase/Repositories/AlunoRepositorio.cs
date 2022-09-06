@@ -42,9 +42,11 @@ namespace Escola.Infra.DataBase.Repositories
         {
             return _contexto.Alunos.Find(id);
         }
-        public IEnumerable<Aluno> ObterTodos()
+        public IEnumerable<Aluno> ObterTodos(Paginacao paginacao)
         {
-            return _contexto.Alunos;
+            return _contexto.Alunos
+                .Take(paginacao.Take)
+                .Skip(paginacao.Skip);
         }
         public IEnumerable<Boletim> ObterBoletins(Guid id)
         {
