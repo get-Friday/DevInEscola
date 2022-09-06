@@ -70,7 +70,8 @@ namespace Escola.Api.Controllers
             [FromRoute] Guid idBoletim
         )
         {
-            return Ok(_alunoServico.ObterNotasMateria(idAluno, idBoletim));
+            _alunoServico.ObterNotasMateria(idAluno, idBoletim);
+            return StatusCode(StatusCodes.Status200OK);
         }
     }
 }
