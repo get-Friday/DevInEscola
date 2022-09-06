@@ -52,16 +52,9 @@ namespace Escola.Api.Controllers
             [FromBody] AlunoDTO aluno
         )
         {
-            try
-            {
-                aluno.Id = id;
-                _alunoServico.Alterar(aluno);
-                return Ok();
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            aluno.Id = id;
+            _alunoServico.Alterar(aluno);
+            return StatusCode(StatusCodes.Status201Created);
         }
         [HttpGet("{id}/boletins")]
         public IActionResult ObterBoletins(
