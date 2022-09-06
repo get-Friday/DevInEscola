@@ -16,5 +16,6 @@ namespace Escola.Domain.Interfaces.Repositories
         bool ExisteMatricula (int matricula);
         IEnumerable<Boletim> ObterBoletins(Guid id);
         IEnumerable<NotasMateria> ObterNotasMateria(Guid idAluno, Guid idBoletim);
+        public int ObterTotal();
     }
 }
