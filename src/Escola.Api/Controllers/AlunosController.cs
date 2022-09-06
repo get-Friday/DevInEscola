@@ -34,7 +34,8 @@ namespace Escola.Api.Controllers
         public IActionResult ObterTodos(int take = 5, int skip = 0)
         {
             Paginacao paginacao = new(take, skip);
-
+            int totalRegistros = _alunoServico.ObterTotal();
+            Response.Headers.Add("X-Paginacao-TotalRegistros", totalRegistros.ToString());
             return Ok(_alunoServico.ObterTodos(paginacao));
         }
         [HttpPost]
