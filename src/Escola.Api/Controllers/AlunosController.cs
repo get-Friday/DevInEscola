@@ -42,13 +42,8 @@ namespace Escola.Api.Controllers
         }
         [HttpDelete("{id}")]
         public IActionResult Deletar(Guid id){
-            try{
-                _alunoServico.Excluir(id);
-                return StatusCode(StatusCodes.Status204NoContent);
-            }
-            catch{
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            _alunoServico.Excluir(id);
+            return StatusCode(StatusCodes.Status204NoContent);
         }
         [HttpPut("{id}")]
         public IActionResult Alterar(
