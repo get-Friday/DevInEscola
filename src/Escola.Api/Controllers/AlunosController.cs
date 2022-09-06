@@ -54,6 +54,7 @@ namespace Escola.Api.Controllers
         {
             aluno.Id = id;
             _alunoServico.Alterar(aluno);
+            _memoryCache.Set<AlunoDTO>($"aluno:{id}", aluno, new TimeSpan(0, 2, 0));
             return StatusCode(StatusCodes.Status201Created);
         }
         [HttpGet("{id}/boletins")]
