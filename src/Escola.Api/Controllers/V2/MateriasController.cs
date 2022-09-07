@@ -14,5 +14,15 @@ namespace Escola.Api.Controllers.V2
         {
             _materiaServico = materiaServico;
         }
+        [MapToApiVersion("2.0")]
+        [HttpGet]
+        public IActionResult Obter(
+            [FromQuery] string nome
+        )
+        {
+            if (!string.IsNullOrEmpty(nome))
+                return Ok(_materiaServico.ObterPorNome(nome));
+            return Ok(_materiaServico.ObterTodos());
+        }
     }
 }
