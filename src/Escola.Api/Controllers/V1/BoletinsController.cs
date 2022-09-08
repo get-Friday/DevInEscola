@@ -1,11 +1,12 @@
-﻿using Escola.Domain.DTO;
+﻿using Escola.Domain.DTO.V1;
 using Escola.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Escola.Api.Controllers.V1
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class BoletinsController : Controller
     {
         private readonly IBoletimServico _boletimServico;
@@ -13,6 +14,7 @@ namespace Escola.Api.Controllers.V1
         {
             _boletimServico = boletimServico;
         }
+        [MapToApiVersion("1.0")]
         [HttpGet("{id}")]
         public IActionResult ObterPorId(
             [FromRoute] Guid id
@@ -20,6 +22,7 @@ namespace Escola.Api.Controllers.V1
         {
             return Ok(_boletimServico.ObterPorId(id));
         }
+        [MapToApiVersion("1.0")]
         [HttpPost]
         public IActionResult Inserir(
             [FromBody] BoletimDTO boletim
@@ -28,6 +31,7 @@ namespace Escola.Api.Controllers.V1
             _boletimServico.Inserir(boletim);
             return StatusCode(StatusCodes.Status201Created);
         }
+        [MapToApiVersion("1.0")]
         [HttpPut("{id}")]
         public IActionResult Alterar(
             [FromRoute] Guid id,
@@ -38,6 +42,7 @@ namespace Escola.Api.Controllers.V1
             _boletimServico.Alterar(boletim);
             return StatusCode(StatusCodes.Status201Created);
         }
+        [MapToApiVersion("1.0")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(
             [FromRoute] Guid id
