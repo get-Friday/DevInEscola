@@ -52,7 +52,8 @@ namespace Escola.Api.Controllers.V1
             return StatusCode(StatusCodes.Status204NoContent);
         }
         [MapToApiVersion("1.0")]
-        [HttpGet("{id}/boletins")]
+        [Route("~/api/v1/Alunos/{id}/boletins")]
+        [HttpGet]
         public IActionResult ObterBoletins(
             [FromRoute] Guid id
         )
@@ -60,7 +61,8 @@ namespace Escola.Api.Controllers.V1
             return Ok(_boletimServico.ObterBoletins(id));
         }
         [MapToApiVersion("1.0")]
-        [HttpGet("{idAluno}/boletins/{idBoletim}/NotasMateria")]
+        [Route("~/api/v1/Alunos/{idAluno}/boletins/{idBoletim}/NotasMateria")]
+        [HttpGet]
         public IActionResult ObterNotasMateria(
             [FromRoute] Guid idAluno,
             [FromRoute] Guid idBoletim
