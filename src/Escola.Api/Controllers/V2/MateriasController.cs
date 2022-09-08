@@ -62,5 +62,14 @@ namespace Escola.Api.Controllers.V2
             _materiaServico.Alterar(materiaV1);
             return StatusCode(StatusCodes.Status201Created);
         }
+        [MapToApiVersion("1.0")]
+        [HttpDelete("{id}")]
+        public IActionResult Excluir(
+            [FromRoute] Guid id
+        )
+        {
+            _materiaServico.Excluir(id);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
     }
 }
