@@ -1,11 +1,4 @@
-﻿using Escola.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Escola.Domain.DTO.V2
+﻿namespace Escola.Domain.DTO.V2
 {
     public class MateriaDTO
     {
@@ -14,7 +7,7 @@ namespace Escola.Domain.DTO.V2
         public MateriaDTO()
         {
         }
-        public MateriaDTO(Materia materia)
+        public MateriaDTO(V1.MateriaDTO materia)
         {
             Id = materia.Id;
             Disciplina = materia.Nome;
