@@ -24,5 +24,13 @@ namespace Escola.Api.Controllers.V2
                 return Ok(_materiaServico.ObterPorNome(nome).Select(m => new MateriaDTO(m)));
             return Ok(_materiaServico.ObterTodos().Select(m => new MateriaDTO(m)));
         }
+        [MapToApiVersion("2.0")]
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(
+            [FromRoute] Guid id
+        )
+        {
+            return Ok(new MateriaDTO(_materiaServico.ObterPorId(id)));
+        }
     }
 }
