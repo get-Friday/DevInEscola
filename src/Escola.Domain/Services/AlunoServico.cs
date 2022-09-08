@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Escola.Domain.DTO;
 using Escola.Domain.Models;
 using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Exceptions;
+using Escola.Domain.DTO.V1;
 
 namespace Escola.Domain.Services
 {

@@ -1,4 +1,4 @@
-﻿using Escola.Domain.DTO;
+﻿using Escola.Domain.DTO.V1;
 using Escola.Domain.Exceptions;
 using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Interfaces.Services;

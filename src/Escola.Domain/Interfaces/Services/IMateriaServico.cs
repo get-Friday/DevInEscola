@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Escola.Domain.DTO;
+using Escola.Domain.DTO.V1;
 using Escola.Domain.Models;
 
 namespace Escola.Domain.Interfaces.Services
