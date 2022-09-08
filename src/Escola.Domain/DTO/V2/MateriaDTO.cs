@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Escola.Domain.DTO
+namespace Escola.Domain.DTO.V2
 {
     public class MateriaDTO
     {
+        public Guid Id { get; set; }
+        public string Disciplina { get; set; }
         public MateriaDTO()
         {
         }
         public MateriaDTO(Materia materia)
         {
             Id = materia.Id;
-            Nome = materia.Nome;
+            Disciplina = materia.Nome;
         }
-        public Guid Id { get; set; }
-        public string Nome { get; set; }
     }
 }
