@@ -32,5 +32,19 @@ namespace Escola.Api.Controllers.V2
         {
             return Ok(new MateriaDTO(_materiaServico.ObterPorId(id)));
         }
+        [MapToApiVersion("2.0")]
+        [HttpPost]
+        public IActionResult Inserir(
+            [FromBody] MateriaDTO materia
+        )
+        {
+            Domain.DTO.V1.MateriaDTO materiaV1 = new()
+            {
+                Id = materia.Id,
+                Nome = materia.Disciplina
+            };
+            _materiaServico.Inserir(materiaV1);
+            return StatusCode(StatusCodes.Status201Created);
+        }
     }
 }
