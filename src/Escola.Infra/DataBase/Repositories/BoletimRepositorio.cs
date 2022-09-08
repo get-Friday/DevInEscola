@@ -33,5 +33,13 @@ namespace Escola.Infra.DataBase.Repositories
         {
             return _contexto.Boletins.Any(b => b.Id == id);
         }
+        public IEnumerable<Boletim> ObterBoletins(Guid id)
+        {
+            return _contexto.Boletins.Where(b => b.AlunoId == id);
+        }
+        public IEnumerable<NotasMateria> ObterNotasMateria(Guid idAluno, Guid idBoletim)
+        {
+            return _contexto.NotasMateria.Where(nt => nt.Boletim.AlunoId == idAluno && nt.BoletimId == idBoletim);
+        }
     }
 }
