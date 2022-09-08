@@ -62,7 +62,7 @@ namespace Escola.Api.Controllers.V2
             _materiaServico.Alterar(materiaV1);
             return StatusCode(StatusCodes.Status201Created);
         }
-        [MapToApiVersion("1.0")]
+        [MapToApiVersion("2.0")]
         [HttpDelete("{id}")]
         public IActionResult Excluir(
             [FromRoute] Guid id
