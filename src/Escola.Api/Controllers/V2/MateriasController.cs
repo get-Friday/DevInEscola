@@ -1,4 +1,4 @@
-﻿using Escola.Domain.DTO;
+﻿using Escola.Domain.DTO.V2;
 using Escola.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,8 +21,8 @@ namespace Escola.Api.Controllers.V2
         )
         {
             if (!string.IsNullOrEmpty(nome))
-                return Ok(_materiaServico.ObterPorNome(nome));
-            return Ok(_materiaServico.ObterTodos());
+                return Ok(_materiaServico.ObterPorNome(nome).Select(m => new MateriaDTO(m)));
+            return Ok(_materiaServico.ObterTodos().Select(m => new MateriaDTO(m)));
         }
     }
 }
