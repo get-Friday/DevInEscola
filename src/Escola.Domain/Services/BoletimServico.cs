@@ -43,5 +43,23 @@ namespace Escola.Domain.Services
             boletimDb.Update(boletim);
             _boletimRepositorio.Alterar(boletimDb);
         }
+        public IList<BoletimDTO> ObterBoletins(Guid id)
+        {
+            IList<BoletimDTO> boletins = _boletimRepositorio
+                .ObterBoletins(id)
+                .Select(b => new BoletimDTO(b))
+                .ToList();
+
+            if (boletins == null)
+                throw new InexistenteException("Aluno não encontrado");
+
+            return boletins;
+        }
+        public IList<NotasMateriaDTO> ObterNotasMateria(Guid idAluno, Guid idBoletim)
+        {
+            return _boletimRepositorio.ObterNotasMateria(idAluno, idBoletim)
+                .Select(nt => new NotasMateriaDTO(nt))
+                .ToList();
+        }
     }
 }

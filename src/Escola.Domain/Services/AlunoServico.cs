@@ -53,23 +53,5 @@ namespace Escola.Domain.Services
         {
             return _alunoRepositorio.ObterTotal();
         }
-        public IList<BoletimDTO> ObterBoletins(Guid id)
-        {
-            IList<BoletimDTO> boletins = _alunoRepositorio
-                .ObterBoletins(id)
-                .Select(b => new BoletimDTO(b))
-                .ToList();
-
-            if (boletins == null)
-                throw new InexistenteException("Aluno não encontrado");
-
-            return boletins;
-        }
-        public IList<NotasMateriaDTO> ObterNotasMateria(Guid idAluno, Guid idBoletim)
-        {
-            return _alunoRepositorio.ObterNotasMateria(idAluno, idBoletim)
-                .Select(nt => new NotasMateriaDTO(nt))
-                .ToList();
-        }
     }
 }
