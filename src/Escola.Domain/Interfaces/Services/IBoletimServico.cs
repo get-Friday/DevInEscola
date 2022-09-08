@@ -13,5 +13,7 @@ namespace Escola.Domain.Interfaces.Services
         void Inserir(BoletimDTO boletim);
         void Excluir(Guid id);
         void Alterar(BoletimDTO boletim);
+        IList<BoletimDTO> ObterBoletins(Guid id);
+        IList<NotasMateriaDTO> ObterNotasMateria(Guid idAluno, Guid idBoletim);
     }
 }
