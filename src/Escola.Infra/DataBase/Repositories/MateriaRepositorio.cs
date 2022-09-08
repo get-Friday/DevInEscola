@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Escola.Domain.Interfaces.Repositories;
+﻿using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Models;
 
 namespace Escola.Infra.DataBase.Repositories

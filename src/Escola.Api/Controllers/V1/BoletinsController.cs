@@ -1,6 +1,5 @@
 ﻿using Escola.Domain.DTO.V1;
 using Escola.Domain.Interfaces.Services;
-using Escola.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Escola.Api.Controllers.V1
