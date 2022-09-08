@@ -14,5 +14,7 @@ namespace Escola.Domain.Interfaces.Repositories
         void Excluir(Boletim boletim);
         void Alterar(Boletim boletim);
         bool ExisteBoletim(Guid id);
+        IEnumerable<Boletim> ObterBoletins(Guid id);
+        IEnumerable<NotasMateria> ObterNotasMateria(Guid idAluno, Guid idBoletim);
     }
 }
