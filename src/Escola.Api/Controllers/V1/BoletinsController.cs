@@ -1,5 +1,6 @@
 ﻿using Escola.Domain.DTO.V1;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Escola.Api.Controllers.V1
@@ -50,6 +51,23 @@ namespace Escola.Api.Controllers.V1
         {
             _boletimServico.Excluir(id);
             return StatusCode(StatusCodes.Status204NoContent);
+        }
+        [MapToApiVersion("1.0")]
+        [HttpGet("{id}/boletins")]
+        public IActionResult ObterBoletins(
+            [FromRoute] Guid id
+        )
+        {
+            return Ok(_boletimServico.ObterBoletins(id));
+        }
+        [MapToApiVersion("1.0")]
+        [HttpGet("{idAluno}/boletins/{idBoletim}/NotasMateria")]
+        public IActionResult ObterNotasMateria(
+            [FromRoute] Guid idAluno,
+            [FromRoute] Guid idBoletim
+        )
+        {
+            return Ok(_boletimServico.ObterNotasMateria(idAluno, idBoletim));
         }
     }
 }

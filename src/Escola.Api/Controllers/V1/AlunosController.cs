@@ -67,22 +67,5 @@ namespace Escola.Api.Controllers.V1
             _memoryCache.Set($"aluno:{id}", aluno, new TimeSpan(0, 2, 0));
             return StatusCode(StatusCodes.Status201Created);
         }
-        [MapToApiVersion("1.0")]
-        [HttpGet("{id}/boletins")]
-        public IActionResult ObterBoletins(
-            [FromRoute] Guid id
-        )
-        {
-            return Ok(_alunoServico.ObterBoletins(id));
-        }
-        [MapToApiVersion("1.0")]
-        [HttpGet("{idAluno}/boletins/{idBoletim}/NotasMateria")]
-        public IActionResult ObterNotasMateria(
-            [FromRoute] Guid idAluno,
-            [FromRoute] Guid idBoletim
-        )
-        {
-            return Ok(_alunoServico.ObterNotasMateria(idAluno, idBoletim));
-        }
     }
 }
