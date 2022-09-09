@@ -13,9 +13,10 @@ namespace Escola.Api.Controllers.V1
     {
         private readonly IMateriaServico _materiaServico;
         private readonly IMemoryCache _memoryCache;
-        public MateriasController(IMateriaServico materiaServico)
+        public MateriasController(IMateriaServico materiaServico, IMemoryCache memoryCache)
         {
             _materiaServico = materiaServico;
+            _memoryCache = memoryCache;
         }
         [MapToApiVersion("1.0")]
         [HttpGet]
