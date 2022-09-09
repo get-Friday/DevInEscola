@@ -2,12 +2,13 @@
 {
     public class Paginacao
     {
-        public int Take { get; set; }
-        public int Skip { get; set; }
-        public Paginacao(int take, int skip)
+        // Tranca a classe para paginar apenas de 5 em 5
+        public int Take = 5;
+        public int Skip = 5;
+        public Paginacao(int pagina)
         {
-            Take = take;
-            Skip = skip;
+            Take *= pagina;
+            Skip *= --pagina;
         }
     }
 }
