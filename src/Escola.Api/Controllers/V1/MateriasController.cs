@@ -2,6 +2,7 @@
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Escola.Api.Controllers.V1
 {
@@ -11,6 +12,7 @@ namespace Escola.Api.Controllers.V1
     public class MateriasController : ControllerBase
     {
         private readonly IMateriaServico _materiaServico;
+        private readonly IMemoryCache _memoryCache;
         public MateriasController(IMateriaServico materiaServico)
         {
             _materiaServico = materiaServico;
@@ -36,7 +38,12 @@ namespace Escola.Api.Controllers.V1
             [FromRoute] Guid id
         )
         {
-            return Ok(_materiaServico.ObterPorId(id));
+            if (!_memoryCache.TryGetValue($"materia:{id}", out MateriaDTO materia))
+            {
+                materia = _materiaServico.ObterPorId(id);
+                _memoryCache.Set($"materia:{id}", materia, new TimeSpan(0, 2, 0));
+            }
+            return Ok(materia);
         }
         [MapToApiVersion("1.0")]
         [HttpPost]
