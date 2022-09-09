@@ -17,5 +17,9 @@ namespace Escola.Infra.DataBase.Repositories
         {
             return _contexto.Materias.Any(m => m.Nome == nome);
         }
+        public int ObterTotal()
+        {
+            return _contexto.Materias.Count();
+        }
     }
 }
