@@ -9,7 +9,7 @@ namespace Escola.Infra.DataBase.Repositories
 {
     public class BaseRepositorio <TEntity, TKey> where TEntity : class
     {
-        private readonly EscolaDBContexto _contexto;
+        protected readonly EscolaDBContexto _contexto;
         public BaseRepositorio(EscolaDBContexto contexto)
         {
             _contexto = contexto;
