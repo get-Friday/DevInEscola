@@ -1,5 +1,6 @@
 ﻿using Escola.Domain.DTO.V1;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Escola.Api.Controllers.V1
@@ -17,12 +18,17 @@ namespace Escola.Api.Controllers.V1
         [MapToApiVersion("1.0")]
         [HttpGet]
         public IActionResult Obter(
-            [FromQuery] string nome
+            [FromQuery] string nome,
+            int take = 5,
+            int skip = 0
         )
         {
+            Paginacao paginacao = new(take, skip);
+            int totalRegistros = _materiaServico.ObterTotal();
+            Response.Headers.Add("X-Paginacao-TotalRegistros", totalRegistros.ToString());
             if (!string.IsNullOrEmpty(nome))
                 return Ok(_materiaServico.ObterPorNome(nome));
-            return Ok(_materiaServico.ObterTodos());
+            return Ok(_materiaServico.ObterTodos(paginacao));
         }
         [MapToApiVersion("1.0")]
         [HttpGet("{id}")]
