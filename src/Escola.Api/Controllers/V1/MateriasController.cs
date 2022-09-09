@@ -72,6 +72,7 @@ namespace Escola.Api.Controllers.V1
         {
             materia.Id = id;
             _materiaServico.Alterar(materia);
+            _memoryCache.Set($"materia:{id}", materia, new TimeSpan(0, 2, 0));
             return StatusCode(StatusCodes.Status201Created);
         }
     }
