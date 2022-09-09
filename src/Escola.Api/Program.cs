@@ -1,14 +1,11 @@
-using Escola.Domain.Interfaces.Services;
+using Escola.Api.Config;
 using Escola.Domain.Interfaces.Repositories;
-using Escola.Infra.DataBase.Repositories;
+using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Services;
 using Escola.Infra.DataBase;
-using Escola.Api.Config;
+using Escola.Infra.DataBase.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
