@@ -13,10 +13,10 @@ namespace Escola.Domain.Services
         {
             _materiaRepositorio = materiaRepositorio;
         }
-        public IList<MateriaDTO> ObterTodos()
+        public IList<MateriaDTO> ObterTodos(Paginacao paginacao)
         {
             return _materiaRepositorio
-                .ObterTodos()
+                .ObterTodos(paginacao)
                 .Select(m => new MateriaDTO(m))
                 .ToList();
         }
@@ -60,6 +60,10 @@ namespace Escola.Domain.Services
             Materia materiaDb = _materiaRepositorio.ObterPorId(materia.Id);
             materiaDb.Update(materia);
             _materiaRepositorio.Alterar(materiaDb);
+        }
+        public int ObterTotal()
+        {
+            return _materiaRepositorio.ObterTotal();
         }
     }
 }
