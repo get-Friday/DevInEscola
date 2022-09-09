@@ -1,6 +1,8 @@
+using AutoMapper;
 using Escola.Api.Config;
 using Escola.Domain.Interfaces.Repositories;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Models;
 using Escola.Domain.Services;
 using Escola.Infra.DataBase;
 using Escola.Infra.DataBase.Repositories;
@@ -38,6 +40,16 @@ builder.Services.AddVersionedApiExplorer(setup =>
 
 var app = builder.Build();
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.CreateMap<Escola.Domain.DTO.V1.MateriaDTO, Materia>();
+    mc.CreateMap<Escola.Domain.DTO.V1.MateriaDTO, Escola.Domain.DTO.V2.MateriaDTO>()
+        .ForMember(d => d.Disciplina, o => o.MapFrom(s => s.Nome))
+        .ReverseMap();
+});
+var mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 app.MapControllers();
 app.UseMiddleware<ErrorMiddleware>();
 
