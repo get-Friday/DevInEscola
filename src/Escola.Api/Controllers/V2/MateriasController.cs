@@ -21,14 +21,13 @@ namespace Escola.Api.Controllers.V2
         [HttpGet]
         public IActionResult Obter(
             [FromQuery] string nome,
-            int take = 5,
-            int skip = 0
+            int pagina = 1
         )
         {
             if (!string.IsNullOrEmpty(nome))
                 return Ok(_mapper.Map<List<Domain.DTO.V2.MateriaDTO>>(_materiaServico.ObterPorNome(nome)));
 
-            Paginacao paginacao = new(take, skip);
+            Paginacao paginacao = new(pagina);
             int totalRegistros = _materiaServico.ObterTotal();
             Response.Headers.Add("X-Paginacao-TotalRegistros", totalRegistros.ToString());
             return Ok(_mapper.Map<List<Domain.DTO.V2.MateriaDTO>>(_materiaServico.ObterTodos(paginacao)));
