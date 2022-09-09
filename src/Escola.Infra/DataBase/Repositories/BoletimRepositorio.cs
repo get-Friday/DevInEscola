@@ -3,31 +3,10 @@ using Escola.Domain.Models;
 
 namespace Escola.Infra.DataBase.Repositories
 {
-    public class BoletimRepositorio : IBoletimRepositorio
+    public class BoletimRepositorio : BaseRepositorio<Boletim, Guid>, IBoletimRepositorio
     {
-        private readonly EscolaDBContexto _contexto;
-        public BoletimRepositorio(EscolaDBContexto contexto)
+        public BoletimRepositorio(EscolaDBContexto contexto) : base(contexto)
         {
-            _contexto = contexto;
-        }
-        public Boletim ObterPorId(Guid id)
-        {
-            return _contexto.Boletins.Find(id);
-        }
-        public void Inserir(Boletim boletim)
-        {
-            _contexto.Boletins.Add(boletim);
-            _contexto.SaveChanges();
-        }
-        public void Excluir(Boletim boletim)
-        {
-            _contexto.Boletins.Remove(boletim);
-            _contexto.SaveChanges();
-        }
-        public void Alterar(Boletim boletim)
-        {
-            _contexto.Boletins.Update(boletim);
-            _contexto.SaveChanges();
         }
         public bool ExisteBoletim(Guid id)
         {
