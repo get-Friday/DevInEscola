@@ -1,4 +1,4 @@
-﻿using Escola.Domain.DTO.V2;
+﻿using AutoMapper;
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +11,11 @@ namespace Escola.Api.Controllers.V2
     public class MateriasController : ControllerBase
     {
         private readonly IMateriaServico _materiaServico;
-        public MateriasController(IMateriaServico materiaServico)
+        private readonly IMapper _mapper;
+        public MateriasController(IMateriaServico materiaServico, IMapper mapper)
         {
             _materiaServico = materiaServico;
+            _mapper = mapper;
         }
         [MapToApiVersion("2.0")]
         [HttpGet]
@@ -24,12 +26,12 @@ namespace Escola.Api.Controllers.V2
         )
         {
             if (!string.IsNullOrEmpty(nome))
-                return Ok(_materiaServico.ObterPorNome(nome).Select(m => new MateriaDTO(m)));
+                return Ok(_mapper.Map<List<Domain.DTO.V2.MateriaDTO>>(_materiaServico.ObterPorNome(nome)));
 
             Paginacao paginacao = new(take, skip);
             int totalRegistros = _materiaServico.ObterTotal();
             Response.Headers.Add("X-Paginacao-TotalRegistros", totalRegistros.ToString());
-            return Ok(_materiaServico.ObterTodos(paginacao).Select(m => new MateriaDTO(m)));
+            return Ok(_mapper.Map<List<Domain.DTO.V2.MateriaDTO>>(_materiaServico.ObterTodos(paginacao)));
         }
         [MapToApiVersion("2.0")]
         [HttpGet("{id}")]
@@ -37,36 +39,26 @@ namespace Escola.Api.Controllers.V2
             [FromRoute] Guid id
         )
         {
-            return Ok(new MateriaDTO(_materiaServico.ObterPorId(id)));
+            return Ok(_mapper.Map<Domain.DTO.V2.MateriaDTO>(_materiaServico.ObterPorId(id)));
         }
         [MapToApiVersion("2.0")]
         [HttpPost]
         public IActionResult Inserir(
-            [FromBody] MateriaDTO materia
+            [FromBody] Domain.DTO.V2.MateriaDTO materia
         )
         {
-            Domain.DTO.V1.MateriaDTO materiaV1 = new()
-            {
-                Id = materia.Id,
-                Nome = materia.Disciplina
-            };
-            _materiaServico.Inserir(materiaV1);
+            _materiaServico.Inserir(_mapper.Map<Domain.DTO.V1.MateriaDTO>(materia));
             return StatusCode(StatusCodes.Status201Created);
         }
         [MapToApiVersion("2.0")]
         [HttpPut("{id}")]
         public IActionResult Alterar(
             [FromRoute] Guid id,
-            [FromBody] MateriaDTO materia
+            [FromBody] Domain.DTO.V2.MateriaDTO materia
         )
         {
             materia.Id = id;
-            Domain.DTO.V1.MateriaDTO materiaV1 = new()
-            {
-                Id = materia.Id,
-                Nome = materia.Disciplina
-            };
-            _materiaServico.Alterar(materiaV1);
+            _materiaServico.Alterar(_mapper.Map<Domain.DTO.V1.MateriaDTO>(materia));
             return StatusCode(StatusCodes.Status201Created);
         }
         [MapToApiVersion("2.0")]
