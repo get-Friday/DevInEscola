@@ -60,6 +60,7 @@ namespace Escola.Api.Controllers.V1
             [FromRoute] Guid id
         )
         {
+            _memoryCache.Remove($"materia:{id}");
             _materiaServico.Excluir(id);
             return StatusCode(StatusCodes.Status204NoContent);
         }
