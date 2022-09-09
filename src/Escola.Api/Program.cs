@@ -42,7 +42,6 @@ var app = builder.Build();
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 var mappingConfig = new MapperConfiguration(mc =>
 {
-    mc.CreateMap<Escola.Domain.DTO.V1.MateriaDTO, Materia>();
     mc.CreateMap<Escola.Domain.DTO.V1.MateriaDTO, Escola.Domain.DTO.V2.MateriaDTO>()
         .ForMember(d => d.Disciplina, o => o.MapFrom(s => s.Nome))
         .ReverseMap();
