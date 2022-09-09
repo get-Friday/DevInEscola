@@ -15,7 +15,7 @@ namespace Escola.Infra.DataBase.Repositories
         }
         public bool ExisteMateria(string nome)
         {
-            return _contexto.Materias.Any(m => m.Nome == nome);
+            return _contexto.Materias.Any(m => m.Nome.Contains(nome));
         }
         public int ObterTotal()
         {
